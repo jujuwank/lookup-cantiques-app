@@ -383,13 +383,20 @@ input::placeholder{
   text-align: center;
   animation: splashZoom 1.2s ease;
 }
-
+/*
 .splash-icon {
   font-size: 70px;
   margin-bottom: 15px;
   animation: floatIcon 1.8s ease-in-out infinite;
-}
+}*/
 
+.splash-logo{
+    width:120px;
+    height:auto;
+    margin-bottom:20px;
+    animation:floatLogo 3,5s ease-in-out infinite;
+    filter:drop-shadow(0 0 15px rgba(255,215,0,.35));
+}
 .splash-content h1 {
   font-size: 36px;
   letter-spacing: 4px;
@@ -444,7 +451,7 @@ input::placeholder{
     transform: scale(1);
   }
 }
-
+/*
 @keyframes floatIcon {
   0%, 100% {
     transform: translateY(0);
@@ -453,7 +460,21 @@ input::placeholder{
   50% {
     transform: translateY(-8px);
   }
+}*/
+
+
+@keyframes floatLogo{
+
+    0%,100%{
+        transform:translateY(0) scale(1);
+    }
+
+    50%{
+        transform:translateY(-8px) scale(1.03);
+    }
+
 }
+
 
 @keyframes bounce {
   from {

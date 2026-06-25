@@ -1,5 +1,7 @@
 
-const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8XpYXfs_ilNG9AX7FqjCQkR-_b4k3DhZaY0n8m_7HO8HZfESSnxvhasnV4-Vk-PF8XscgIcFSXjXQ/pub?gid=643246372&single=true&output=csv";
+//const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8XpYXfs_ilNG9AX7FqjCQkR-_b4k3DhZaY0n8m_7HO8HZfESSnxvhasnV4-Vk-PF8XscgIcFSXjXQ/pub?gid=643246372&single=true&output=csv";
+
+const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8XpYXfs_ilNG9AX7FqjCQkR-_b4k3DhZaY0n8m_7HO8HZfESSnxvhasnV4-Vk-PF8XscgIcFSXjXQ/pub?gid=927367449&single=true&output=csv";
 
 const input = document.getElementById("numeroInput");
 input.focus();
@@ -69,7 +71,7 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     splashScreen.classList.add("hide");
-  }, 2500);
+  }, 4500);
 });
 
 
