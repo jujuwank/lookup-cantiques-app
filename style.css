@@ -1,88 +1,312 @@
-* {
-  box-sizing: border-box;
+/* ===========================
+   VARIABLES DES THEMES
+=========================== */
+
+:root {
+    --background: linear-gradient(135deg, #111827, #1f2937);
+    --card: rgba(255,255,255,0.08);
+    --result: rgba(255,255,255,0.10);
+
+    --text: #ffffff;
+    --subtitle: #d1d5db;
+    --title: #facc15;
+
+    --input-bg: #ffffff;
+    --input-text: #111827;
+
+    --border: transparent;
+
+    --button-bg: #2d416e;
+    --button-text: white;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #222;
+body.light {
+
+    --background: linear-gradient(135deg,#edf2f7,#dbeafe);
+
+    --card: white;
+
+    --result: #f8fafc;
+
+    --text: #111827;
+
+    --subtitle: #4b5563;
+
+    --title: #2563eb;
+
+    --input-bg: #f3f4f6;
+
+    --input-text: #111827;
+
+    --border: #d1d5db;
+
+    --button-bg: #111827;
+
+    --button-text: white;
 }
 
-.app {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 30px 15px;
+
+/* ===========================
+   GENERAL
+=========================== */
+
+*{
+    box-sizing:border-box;
 }
 
-.card {
-  width: 100%;
-  max-width: 650px;
-  background: white;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+body{
+
+    margin:0;
+
+    font-family:Arial,sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    transition:0.35s;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 8px;
+
+/* ===========================
+   CONTENEUR
+=========================== */
+
+.app{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
 }
 
-.subtitle {
-  text-align: center;
-  color: #666;
-  margin-bottom: 25px;
+
+/* ===========================
+   CARTE
+=========================== */
+
+.card{
+
+    width:100%;
+
+    max-width:700px;
+
+    background:var(--card);
+
+    padding:25px;
+
+    border-radius:22px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+    text-align:center;
+
+    transition:.35s;
 }
 
-input {
-  width: 100%;
-  padding: 16px;
-  font-size: 22px;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  outline: none;
-  text-align: center;
+
+/* ===========================
+   TITRES
+=========================== */
+
+h1{
+
+    margin-bottom:10px;
+
+    font-size:30px;
 }
 
-input:focus {
-  border-color: #2c7be5;
+.subtitle{
+
+    color:var(--subtitle);
+
+    margin-bottom:20px;
 }
 
-.resultat {
-  margin-top: 25px;
-  padding: 20px;
-  background: #f9fafb;
-  border-radius: 14px;
-  min-height: 120px;
+
+/* ===========================
+   BOUTON MODE CLAIR
+=========================== */
+
+.theme-toggle{
+
+    background:var(--button-bg);
+
+    color:var(--button-text);
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    margin-bottom:25px;
+
+    transition:.3s;
 }
 
-.empty {
-  color: #777;
-  text-align: center;
+.theme-toggle:hover{
+
+    transform:scale(1.05);
 }
 
-.titre {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 12px;
+
+/* ===========================
+   CHAMP RECHERCHE
+=========================== */
+
+input{
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    border:2px solid var(--border);
+
+    outline:none;
+
+    font-size:20px;
+
+    text-align:center;
+
+    background:var(--input-bg);
+
+    color:var(--input-text);
+
+    transition:.3s;
 }
 
-.numero {
-  color: #2c7be5;
-  font-weight: bold;
+input::placeholder{
+
+    color:#6b7280;
 }
 
-.texte {
-  white-space: pre-line;
-  line-height: 1.7;
-  font-size: 18px;
+
+/* ===========================
+   RESULTAT
+=========================== */
+
+.resultat{
+
+    margin-top:25px;
+
+    background:var(--result);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    min-height:120px;
+
+    animation:fadeIn .3s;
+
+    transition:.3s;
 }
 
-.erreur {
-  color: #b00020;
-  text-align: center;
-  font-weight: bold;
+.resultat h2{
+
+    margin-top:0;
+
+    color:var(--title);
+}
+
+
+/* ===========================
+   PAROLES
+=========================== */
+
+.paroles{
+
+    white-space:pre-line;
+
+    line-height:1.8;
+
+    font-size:20px;
+
+    text-align:center;
+
+    color:var(--text);
+}
+
+.empty{
+
+    color:var(--subtitle);
+}
+
+.not-found{
+
+    color:#ef4444;
+}
+
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ===========================
+   TELEPHONE
+=========================== */
+
+@media(max-width:600px){
+
+    .card{
+
+        padding:18px;
+
+    }
+
+    h1{
+
+        font-size:24px;
+
+    }
+
+    input{
+
+        font-size:18px;
+
+    }
+
+    .paroles{
+
+        font-size:18px;
+
+    }
+
 }

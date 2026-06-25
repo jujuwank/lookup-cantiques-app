@@ -1,50 +1,60 @@
-/*const URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vT8XpYXfs_ilNG9AX7FqjCQkR-_b4k3DhZaY0n8m_7HO8HZfESSnxvhasnV4-Vk-PF8XscgIcFSXjXQ/pub?gid=643246372&single=true&output=csv";
-*/
 
-const URL = 
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vT8XpYXfs_ilNG9AX7FqjCQkR-_b4k3DhZaY0n8m_7HO8HZfESSnxvhasnV4-Vk-PF8XscgIcFSXjXQ/pub?gid=643246372&single=true&output=csv";
-
-let cantiques = [];
+const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8XpYXfs_ilNG9AX7FqjCQkR-_b4k3DhZaY0n8m_7HO8HZfESSnxvhasnV4-Vk-PF8XscgIcFSXjXQ/pub?gid=643246372&single=true&output=csv";
 
 const input = document.getElementById("numeroInput");
+input.focus();
 const resultat = document.getElementById("resultat");
 
-Papa.parse(URL, {
+let cantiques = [];
+let indexCantiques = {};
+
+Papa.parse(sheetUrl, {
   download: true,
   header: true,
   skipEmptyLines: true,
+  complete: function (results) {
+    cantiques = results.data;cantiques.forEach(c => {
+        indexCantiques[String(c.Numero).trim()] = c;
+    });
 
-  complete: function(results) {
-    cantiques = results.data;
-    console.log("Cantiques chargés :", cantiques);
+    console.log(indexCantiques);
   },
-
-  error: function(error) {
-    console.error("Erreur :", error);
-    resultat.innerHTML = '<p class="erreur">Impossible de charger les données Google Sheets.</p>';
-  }
 });
 
 input.addEventListener("input", () => {
-  const numero = input.value.trim();
+  const numeroRecherche = input.value.trim();
 
-  if (numero === "") {
-    resultat.innerHTML = '<p class="empty">Aucun cantique sélectionné.</p>';
+  if (numeroRecherche === "") {
+    resultat.innerHTML = `<p class="empty">Aucun cantique sélectionné.</p>`;
     return;
   }
 
-  const cantique = cantiques.find(
-    item => String(item.numero).trim() === numero
-  );
+  const cantique = indexCantiques[numeroRecherche];
 
-  if (cantique) {
-    resultat.innerHTML = `
-      <div class="numero">Cantique N° ${cantique.numero}</div>
-      <div class="titre">${cantique.titre}</div>
-      <div class="texte">${cantique.paroles}</div>
-    `;
+  if (!cantique) {
+    resultat.innerHTML = `<p class="not-found">Aucun cantique trouvé pour le numéro ${numeroRecherche}.</p>`;
+    return;
+  }
+
+  resultat.innerHTML = `
+    <h2>${cantique.Numero} - ${cantique.Titre}</h2>
+    <div class="paroles">${cantique.Paroles}</div>
+  `;
+});
+
+
+// --------- Pour faire un thème clair --------
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+
+  if (document.body.classList.contains("light")) {
+    themeToggle.textContent = "Mode sombre";
   } else {
-    resultat.innerHTML = '<p class="erreur">Aucun cantique trouvé avec ce numéro.</p>';
+    themeToggle.textContent = "Mode clair";
   }
 });
+
+
+
