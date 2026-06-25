@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recherche de Cantiques</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <h1>Recherche de Cantiques</h1>
+      <p class="subtitle">Entrez un numéro pour afficher le texte correspondant.</p>
+
+      <input 
+        type="number" 
+        id="numeroInput" 
+        placeholder="Exemple : 1" 
+        autocomplete="off"
+      />
+
+      <div id="resultat" class="resultat">
+        <p class="empty">Aucun cantique sélectionné.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
