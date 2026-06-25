@@ -37,9 +37,15 @@ input.addEventListener("input", () => {
   }
 
   resultat.innerHTML = `
-    <h2>${cantique.Numero} - ${cantique.Titre}</h2>
-    <div class="paroles">${cantique.Paroles}</div>
-  `;
+  <div class="chant-header">
+    <div class="chant-number">N° ${cantique.Numero}</div>
+    <h2 class="chant-title">${cantique.Titre}</h2>
+  </div>
+
+  <div class="paroles">
+    ${cantique.Paroles}
+  </div>
+`;
 });
 
 
@@ -54,6 +60,16 @@ themeToggle.addEventListener("click", () => {
   } else {
     themeToggle.textContent = "Mode clair";
   }
+});
+
+// ====== animation d'ouverture ======
+
+window.addEventListener("load", () => {
+  const splashScreen = document.getElementById("splashScreen");
+
+  setTimeout(() => {
+    splashScreen.classList.add("hide");
+  }, 2500);
 });
 
 
