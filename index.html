@@ -4,49 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recherche de Cantiques</title>
+
+  <!-- Feuille de style principale -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- =====================================================
+       ECRAN D'OUVERTURE
+  ====================================================== -->
+  <div id="splashScreen" class="splash-screen" aria-hidden="true">
+    <div class="splash-content">
+      <img src="images/IMG_RECCHANT.png" alt="Logo Cantiques" class="splash-logo" />
+      <h1>CANTIQUES</h1>
+      <p>“Que tout ce qui respire loue l'Éternel.”</p>
+      <span>Psaume 150:6</span>
+
+      <div class="loader" aria-hidden="true">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       APPLICATION PRINCIPALE
+  ====================================================== -->
   <main class="app">
-    <section class="card">
-      <h1>Recherche de Cantiques</h1>
-      <p class="subtitle">Entrez un numéro pour afficher le texte correspondant.</p>
+    <section class="card" aria-labelledby="appTitle">
+      <h1 id="appTitle">Recherche de Cantiques</h1>
+      <p class="subtitle">Entrez un numéro pour afficher le cantique correspondant.</p>
 
-      <button id="themeToggle" class="theme-toggle">Mode clair</button>
+      <button id="themeToggle" class="theme-toggle" type="button">
+        Mode clair
+      </button>
 
-      <input 
-        type="text"
-        id="numeroInput" 
-        placeholder="Exemple : 1" 
+      <label class="sr-only" for="numeroInput">Numéro ou titre du cantique</label>
+      <input
+        type="search"
+        id="numeroInput"
+        placeholder="Exemple : 1 ou Grand Dieu"
         autocomplete="off"
       />
 
+      <!-- Liste dynamique des cantiques disponibles -->
+      <div id="listeCantiques" class="liste-cantiques" aria-live="polite">
+        <p class="empty">Chargement de la liste...</p>
+      </div>
 
-
-      <div id="resultat" class="resultat">
-        <p class="empty">Aucun cantique sélectionné.</p>
+      <div id="resultat" class="resultat" aria-live="polite">
+        <p class="empty">Chargement des cantiques...</p>
       </div>
     </section>
   </main>
 
+  <!-- Librairie utilisée pour lire le CSV publié depuis Google Sheets -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <!-- Script principal -->
   <script src="app.js"></script>
 </body>
-
-<div id="splashScreen" class="splash-screen">
-  <div class="splash-content">
-    <!--<div class="splash-icon">📖</div>--> 
-    <img src="images/IMG_RECCHANT.png" alt="Logo Cantiques" class="splash-logo">
-    <h1>CANTIQUES</h1>
-    <p>“Que tout ce qui respire loue l'Éternel.”</p>
-    <span>Psaume 150:6</span>
-
-    <div class="loader">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-</div>
-
 </html>
